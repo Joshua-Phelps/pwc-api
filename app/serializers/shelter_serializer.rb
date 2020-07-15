@@ -1,3 +1,3 @@
 class ShelterSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :external_id, :name, :animals
 end
