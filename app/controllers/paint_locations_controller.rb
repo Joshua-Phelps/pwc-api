@@ -1,0 +1,2 @@
+class PaintLocationsController < ApplicationController
+end
