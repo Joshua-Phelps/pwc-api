@@ -10,7 +10,7 @@ class PaintingsController < ApplicationController
   end
 
   def show
-    @painting = Painting.find(painting_params[:id])
+    @painting = Painting.find(params[:id])
     if @painting
       render :json => @painting
     else 
