@@ -1,7 +1,7 @@
 class PaintingsController < ApplicationController
   
   def create
-    @painting.new(painting_params)
+    @painting = Painting.new(painting_params)
     if @painting.save
       render :json => @painting
     else 
@@ -21,6 +21,6 @@ class PaintingsController < ApplicationController
   private
 
   def painting_params
-    params.require(:painting).permit(:id, :animal_id, :paint_location_id, :painting_url, :status, :painter)
+    params.require(:painting).permit(:id, :animal_id, :paint_location_id, :painting_url, :painting_status, :painter, :gallery_id)
   end 
 end

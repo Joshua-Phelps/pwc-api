@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_234345) do
+ActiveRecord::Schema.define(version: 2020_07_14_234312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,20 +33,17 @@ ActiveRecord::Schema.define(version: 2020_07_14_234345) do
     t.string "address"
     t.string "name"
     t.integer "max_paintings"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "gallery_paintings", force: :cascade do |t|
-    t.integer "gallery_id"
-    t.integer "painting_id"
-    t.boolean "currently_displayed"
-    t.integer "card_stock"
+    t.string "email"
+    t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "paint_locations", force: :cascade do |t|
+    t.string "address"
+    t.string "name"
+    t.string "phone_number"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,8 +51,9 @@ ActiveRecord::Schema.define(version: 2020_07_14_234345) do
   create_table "paintings", force: :cascade do |t|
     t.integer "animal_id"
     t.integer "paint_location_id"
+    t.integer "gallery_id"
     t.string "painting_url"
-    t.string "status"
+    t.string "painting_status"
     t.string "painter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -75,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_234345) do
     t.string "name"
     t.string "address"
     t.string "phone_number"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

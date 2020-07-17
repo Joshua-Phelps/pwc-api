@@ -5,7 +5,7 @@ class AnimalsController < ApplicationController
   end
 
   def show
-    animal = Animal.find(animal_params[:id])
+    animal = Animal.find(params[:id])
     render :json => animal
   end
 

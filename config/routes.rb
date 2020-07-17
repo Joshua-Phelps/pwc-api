@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :gallery_paintings
   resources :photos
   resources :galleries
   resources :paint_locations
