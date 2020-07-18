@@ -1,18 +1,18 @@
 class AnimalsController < ApplicationController
   def index
-    animals = Animal.all
-    render :json => animals
+    @animals = Animal.all
+    render :json => @animals, each_serializer: AnimalIndexSerializer
   end
 
   def show
-    animal = Animal.find(params[:id])
-    render :json => animal
+    @animal = Animal.find(params[:id])
+    render :json => @animal
   end
 
   def update
     @animal = Animal.find(animal_params[:id])
     if @animal.update(animal_params)
-      render :json => animal
+      render :json => @animal
     else 
       render :json => {status: 422, error: 'Unable to update!'}
     end 
