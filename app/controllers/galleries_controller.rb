@@ -5,7 +5,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.find(gallery_params[:id])
+    @gallery = Gallery.find(params[:id])
     render :json => @gallery
   end 
 
@@ -16,11 +16,6 @@ class GalleriesController < ApplicationController
     else 
       render :json => {status: 422, error: 'Unable to create gallery'}
     end 
-  end
-
-  def show
-    gallery = Gallery.find(gallery_params[:id])
-    render :json => {gallery: gallery, current_paintings: gallery.current_paintings }
   end
 
   private

@@ -1,4 +1,4 @@
 class Gallery < ApplicationRecord
-  has_many :gallery_paintings
-  has_many :paintings, through: :gallery_paintings
+  has_many :paintings 
+  has_many :animals, through: :paintings
 end
