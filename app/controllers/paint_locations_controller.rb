@@ -7,7 +7,12 @@ class PaintLocationsController < ApplicationController
 
   def show 
     @paint_loc = PaintLocation.find(params[:id])
-    render :json => @paint_loc, serializer: CompletePaintLocationSerializer
+    if @paint_loc
+      render :json => @paint_loc
+    else
+      render :json => {status: 422, error: 'Unable to find this paint location!'}
+    end 
+    # render :json => @paint_loc, serializer: CompletePaintLocationSerializer
   end 
 
   private 

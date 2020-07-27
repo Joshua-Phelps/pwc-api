@@ -4,9 +4,22 @@ class AnimalsController < ApplicationController
     render :json => @animals, each_serializer: AnimalIndexSerializer
   end
 
+  def get_by_name
+    @animals = Animal.where(name: animal_params[:name])
+    if @animal
+      render :json => { ids: @animals }
+    else 
+      render :json => {err: 'Unable to Find an Animal with that name'}
+    end 
+  end 
+
   def show
     @animal = Animal.find(params[:id])
-    render :json => @animal
+    if @animal
+      render :json => @animal
+    else 
+      render :json => {status: 422, error: 'Unable to find this animal!'}
+    end 
   end
 
   def update

@@ -43,3 +43,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'jwt'
+gem "figaro"
+
+gem 'google_drive'
+# gem 'omniauth' 
+# gem 'dotenv-rails' 
+# gem 'omniauth-google-oauth2'
