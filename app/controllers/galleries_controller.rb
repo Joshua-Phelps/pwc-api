@@ -21,6 +21,6 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.require(:gallery).permit(:id, :address, :name, :max_paintings, :email, :phone_number)
+    params.require(:gallery).permit(:id, :name, :max_paintings, :email, :phone_number, :address [:street_address, :city, :state, :zip])
   end 
 end

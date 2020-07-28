@@ -5,11 +5,11 @@ class AnimalsController < ApplicationController
   end
 
   def get_by_name
-    @animals = Animal.where(name: animal_params[:name])
-    if @animal
-      render :json => { ids: @animals }
+    @animals = Animal.where(name: params[:name])
+    if @animals.length > 0
+      render :json => @animals
     else 
-      render :json => {err: 'Unable to Find an Animal with that name'}
+      render :json => {message: 'Unable to Find an Animal with that name'}, status: 401
     end 
   end 
 

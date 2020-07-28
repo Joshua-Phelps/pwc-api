@@ -3,7 +3,7 @@ class CreateShelters < ActiveRecord::Migration[6.0]
     create_table :shelters do |t|
       t.string :external_id
       t.string :name 
-      t.string :address 
+      t.hstore :address
       t.string :phone_number 
       t.string :email
       t.timestamps

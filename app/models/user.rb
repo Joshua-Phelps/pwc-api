@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: true
 
   def self.from_omniauth(auth)
     # Creates a new user only if it doesn't exist

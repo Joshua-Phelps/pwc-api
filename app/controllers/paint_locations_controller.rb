@@ -18,7 +18,7 @@ class PaintLocationsController < ApplicationController
   private 
 
   def paint_locations_params
-    params.require(:paint_location).permit(:id, :name, :address)
+    params.require(:paint_location).permit(:id, :name, :address [:street_address, :city, :state, :zip])
   end 
 
 end
