@@ -4,7 +4,5 @@ class Animal < ApplicationRecord
   belongs_to :shelter
   has_many :galleries, through: :paintings
 
-  def currently_on_display
-  
-  end 
+ 
 end

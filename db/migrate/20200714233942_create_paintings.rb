@@ -7,6 +7,7 @@ class CreatePaintings < ActiveRecord::Migration[6.0]
       t.string :painting_url
       t.string :painting_status
       t.string :painter
+      t.integer :card_stock
 
       t.timestamps
     end

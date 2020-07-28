@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
   def show
     @animal = Animal.find(params[:id])
     if @animal
-      render :json => @animal
+      render :json => @animal, serializer: AnimalFullSerializer
     else 
       render :json => {status: 422, error: 'Unable to find this animal!'}
     end 

@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_232051) do
     t.string "painting_url"
     t.string "painting_status"
     t.string "painter"
+    t.integer "card_stock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
