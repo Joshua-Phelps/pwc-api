@@ -5,7 +5,7 @@ class PaintingsController < ApplicationController
     if @painting.save
       render :json => @painting
     else 
-      render :json => {status: 422, error: 'Unable to create painting!'}
+      error_message
     end 
   end
 
@@ -14,7 +14,7 @@ class PaintingsController < ApplicationController
     if @painting
       render :json => @painting
     else 
-      render :json => {status: 422, error: 'Unable to find painting!'}
+      error_message
     end 
   end
 
@@ -23,7 +23,7 @@ class PaintingsController < ApplicationController
     if @painting.update(painting_params)
       render :json => @painting
     else 
-      render :json => {status: 422, error: 'Unable to update!'}
+      error_message
     end 
   end
 
@@ -32,7 +32,7 @@ class PaintingsController < ApplicationController
     if @painting.destroy
       render :json => {msg: "Successfully deleted"}
     else 
-      render :json => {status: 422, error: 'Unable to delete!'}
+      error_message
     end 
   end
 

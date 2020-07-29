@@ -9,7 +9,7 @@ class SheltersController < ApplicationController
     if @shelter
       render :json => @shelter
     else 
-      render json => {status: 404, message: 'Shelter not found!'}
+      error_message
     end 
   end
 

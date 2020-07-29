@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if user.save 
         render json: {success: 'User Created'}
     else 
-        render json: {error: 'Unable to create user'}
+      error_message
     end 
   end
 

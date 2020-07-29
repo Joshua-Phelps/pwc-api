@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
     if @animals.length > 0
       render :json => @animals
     else 
-      render :json => {message: 'Unable to Find an Animal with that name'}, status: 401
+      error_message
     end 
   end 
 
@@ -18,7 +18,7 @@ class AnimalsController < ApplicationController
     if @animal
       render :json => @animal, serializer: AnimalFullSerializer
     else 
-      render :json => {status: 422, error: 'Unable to find this animal!'}
+      error_message
     end 
   end
 
@@ -27,7 +27,7 @@ class AnimalsController < ApplicationController
     if @animal.update(animal_params)
       render :json => @animal
     else 
-      render :json => {status: 422, error: 'Unable to update!'}
+      error_message
     end 
   end
 

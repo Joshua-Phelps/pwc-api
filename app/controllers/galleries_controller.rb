@@ -6,7 +6,11 @@ class GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find(params[:id])
-    render :json => @gallery
+    if @gallery
+      render :json => @gallery
+    else 
+      error_message
+    end 
   end 
 
   def create
@@ -14,7 +18,7 @@ class GalleriesController < ApplicationController
     if @gallery.save
       render :json => @gallery
     else 
-      render :json => {status: 422, error: 'Unable to create gallery'}
+      error_message
     end 
   end
 

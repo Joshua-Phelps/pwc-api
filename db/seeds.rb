@@ -16,6 +16,7 @@ Gallery.destroy_all
 Painting.destroy_all
 Photo.destroy_all
 PaintLocation.destroy_all 
+User.destroy_all
 
 shelters = [{external_id:"WA52", name: "Adams County Pet Rescue", phone_number: '555-555-5555', email: 'placerEmail@gmail.com', address: {street_address: 'street address', city: 'City', state: 'WA', zip: 'zip code'}},
             {external_id: "WA07", name: "Benton Franklin Animal Services", phone_number: '555-555-5555', email: 'placerEmail@gmail.com', address: {street_address: 'street address', city: 'City', state: 'WA', zip: 'zip code'}},

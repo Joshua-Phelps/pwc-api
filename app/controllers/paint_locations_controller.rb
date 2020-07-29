@@ -10,7 +10,7 @@ class PaintLocationsController < ApplicationController
     if @paint_loc
       render :json => @paint_loc
     else
-      render :json => {status: 422, error: 'Unable to find this paint location!'}
+      rerror_message
     end 
     # render :json => @paint_loc, serializer: CompletePaintLocationSerializer
   end 
