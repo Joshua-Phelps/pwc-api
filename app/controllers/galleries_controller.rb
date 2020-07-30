@@ -14,7 +14,7 @@ class GalleriesController < ApplicationController
   end 
 
   def create
-    @gallery.new(gallery_params)
+    @gallery = Gallery.new(gallery_params)
     if @gallery.save
       render :json => @gallery
     else 
@@ -25,6 +25,6 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.require(:gallery).permit(:id, :name, :max_paintings, :email, :phone_number, :address [:street_address, :city, :state, :zip])
+    params.require(:gallery).permit(:id, :name, :max_paintings, :email, :phone_number, :address => [:street_address, :city, :state, :zip])
   end 
 end
