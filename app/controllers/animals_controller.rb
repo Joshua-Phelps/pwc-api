@@ -4,6 +4,15 @@ class AnimalsController < ApplicationController
     render :json => @animals, each_serializer: AnimalIndexSerializer
   end
 
+  def create
+    @animal = Animal.new(animal_params)
+    if @animal.save
+      render :json => @animal
+    else 
+      error_message
+    end 
+  end
+
   def get_by_name
     @animals = Animal.where(name: params[:name])
     if @animals.length > 0
@@ -43,6 +52,6 @@ class AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:id, :external_id, :description, :name, :photo_status, :shelter_id, :animal_type)
+    params.require(:animal).permit(:id, :external_id, :description, :name, :age, :gender, :photo_local_path, :photo_status, :shelter_id, :animal_type)
   end 
 end

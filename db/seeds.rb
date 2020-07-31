@@ -102,7 +102,7 @@ photo_count = 0
 
 animal_data.each do |data| 
 
-  @shelter = Shelter.find_by(external_id: data["Organization_ID"])
+  @shelter = Shelter.find_or_create_by(external_id: data["Organization_ID"])
 
   @animal = Animal.create(
     name: data["Name"], 

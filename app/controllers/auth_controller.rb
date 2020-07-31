@@ -2,7 +2,6 @@ class AuthController < ApplicationController
   skip_before_action :authorized, only: [:create]
   
   def create
-    # byebug
     user = User.find_by(email: auth_params[:email])
     if user && user.authenticate(auth_params[:password])
       token = issue_token(user)
