@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/current_user', to: 'auth#show'
   post '/password_resets', to: 'password_resets#create'
   patch '/password_resets/:token', to: 'password_resets#update'
+  patch '/permissions', to: 'permissions#update'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

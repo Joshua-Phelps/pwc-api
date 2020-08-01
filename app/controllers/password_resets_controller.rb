@@ -24,7 +24,7 @@ class PasswordResetsController < ApplicationController
   end
   
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
+    
     def password_reset_params
       params.require(:password_reset).permit(:password, :email)
     end
