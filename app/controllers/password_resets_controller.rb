@@ -5,13 +5,14 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by_email(password_reset_params[:email])
     if @user
       @user.send_password_reset 
-      render :json => {message: success}, status: 200
+      render :json => {message: 'Email sent'}, status: 200
     else 
       error_message
     end 
   end
 
   def update
+    byebug
     @user = User.find_by_password_reset_token!(params[:token])
     if @user.password_reset_sent_at < 2.hour.ago
       render :json => {expired: "You token is expired. Please request a new one"}, status: 401
