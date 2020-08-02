@@ -29,11 +29,19 @@ class ApplicationController < ActionController::API
     !!current_user
   end
 
+  def permission_level(level)
+    current_user.permission_level >= level
+  end 
+
   def authorized
     render json: { error: 'Please log in' }, status: :unauthorized unless logged_in?
   end
 
   def error_message
     render json: { error: 'Unable to complete request' }, status: 422
+  end 
+
+  def permission_denied(level)
+    render :json => {error: 'You do not have permission to view this information'}, status: 401 unless permission_level(level)
   end 
 end

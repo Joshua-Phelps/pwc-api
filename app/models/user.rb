@@ -2,6 +2,12 @@ class User < ApplicationRecord
   has_secure_password
   validates :email, uniqueness: true
 
+
+  # permission levels
+  # 1 => regular user, can create/update paintings and read everyething but admin page
+  # 2 => Can create/update everything except permissions 
+  # 3 => Owner, can create/update/delete everything
+
   def self.from_omniauth(auth)
     # Creates a new user only if it doesn't exist
     where(email: auth.info.email).first_or_initialize do |user|

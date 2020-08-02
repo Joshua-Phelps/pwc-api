@@ -1,7 +1,7 @@
 class PermissionsController < ApplicationController
 
   def update
-    @user = User.find_by(email: permissions_params[:email])
+    @user = User.find(params[:id])
     if @user.update(permissions_params)
       render :json => @user
     else 
@@ -12,6 +12,6 @@ class PermissionsController < ApplicationController
   private 
 
   def permissions_params
-    params.require(:permissions).permit(:isAdmin, :email)
+    params.require(:permissions).permit(:permission_level)
   end 
 end

@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
+  before_action only: [:index] do 
+    permission_denied(3)
+  end 
+
+
+  def index
+      @users = User.all
+      render :json => @users
+  end
 
   def create
     @user = User.new(user_params)

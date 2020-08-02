@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.boolean "isAdmin"
+    t.integer "permission_level", default: 1
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.datetime "created_at", precision: 6, null: false
