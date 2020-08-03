@@ -10,6 +10,7 @@ class CreateAnimals < ActiveRecord::Migration[6.0]
       t.integer :shelter_id
       t.integer :canvas_photo_id
       t.integer :profile_photo_id
+      t.boolean :canvas_printed, :default => false
       t.timestamps
     end
   end

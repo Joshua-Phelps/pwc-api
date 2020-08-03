@@ -1,9 +1,9 @@
 class AnimalPhotosFullBgSerializer < ActiveModel::Serializer
-  attributes :photos, :name, :canvas_photo_id, :profile_photo_id, :animal_id
+  attributes :photos, :canvas_photo_id, :profile_photo_id, :animal
 
 
-    def animal_id
-      object.id
+    def animal
+      object.slice(:id, :name)
     end 
 
     def photos

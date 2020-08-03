@@ -49,14 +49,12 @@ class PhotosController < ApplicationController
   end 
 
   def full_background
-    # @photos = Photo.where(bkgd_removed: false)
     @animals = Animal.where(canvas_photo_id: nil)
     render :json => @animals, each_serializer: AnimalPhotosFullBgSerializer 
   end 
 
   def print_ready
-    byebug
-    @animals = Animal.where.not(canvas_photo_id: nil)
+    @animals = Animal.where.not(canvas_photo_id: nil, canvas_printed: true)
     render :json => @animals, each_serializer: AnimalPhotosPrintReadySerializer 
   end 
   

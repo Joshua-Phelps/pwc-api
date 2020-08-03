@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.integer "shelter_id"
     t.integer "canvas_photo_id"
     t.integer "profile_photo_id"
+    t.boolean "canvas_printed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

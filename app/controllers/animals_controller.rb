@@ -34,7 +34,7 @@ class AnimalsController < ApplicationController
   def update
     @animal = Animal.find(params[:id])
     if @animal.update(animal_params)
-      render :json => @animal
+      render :json => @animal, serializer: AnimalFullSerializer
     else 
       error_message
     end 
@@ -66,6 +66,6 @@ class AnimalsController < ApplicationController
   private
 
   def animal_params
-    params.require(:animal).permit(:id, :external_id, :description, :name, :age, :gender, :shelter_id, :profile_photo_id, :animal_type, :canvas_photo_id)
+    params.require(:animal).permit(:id, :external_id, :description, :name, :age, :gender, :shelter_id, :profile_photo_id, :animal_type, :canvas_photo_id, :canvas_printed)
   end 
 end
