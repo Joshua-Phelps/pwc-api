@@ -114,7 +114,6 @@ animal_data.each do |data|
     gender: data["Gender"],
     description: data["Description"],
     shelter_id: @shelter.id,
-    photo_status: 'incomplete',
   )
   if @animal 
     animal_count += 1
@@ -124,10 +123,14 @@ animal_data.each do |data|
       data["Photos"].each_with_index do |ph, idx|
         if ph['Full'] && ph["LocalPath"] 
           if idx === 0 
-            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full', profile: true)
+            created_photo = Photo.new(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full')
+            if created_photo.save 
+              @animal.profile_photo_id = created_photo.id
+              @animal.save
+            end 
             photo_count += 1 
           else 
-            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full', profile: false)
+            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full')
             photo_count += 1 
           end 
         end 

@@ -32,7 +32,7 @@ class AnimalsController < ApplicationController
   end
 
   def update
-    @animal = Animal.find(animal_params[:id])
+    @animal = Animal.find(params[:id])
     if @animal.update(animal_params)
       render :json => @animal
     else 
@@ -41,17 +41,31 @@ class AnimalsController < ApplicationController
   end
 
   def destroy
-    @animal = Animal.find(animal_params[:id])
+    @animal = Animal.find(params[:id])
     @animal.paintings.destroy_all
     @animal.photos.destroy_all
     @animal.destroy
     render :json => {message: 'Animal destroyed!'}
   end
 
+  def update_profile_photo
+    @animal = Animal.find(params[:id])
+    @photo = Photo.find(animal_params[:profile_photo_id])
+    if @animal && @photo
+      @animal.profile_photo_id = @photo.id
+      if @animal.save
+        render :json => @animal, serializer: AnimalFullSerializer
+      else
+        error_message
+      end 
+    else 
+      error_message
+    end 
+  end 
 
   private
 
   def animal_params
-    params.require(:animal).permit(:id, :external_id, :description, :name, :age, :gender, :photo_local_path, :photo_status, :shelter_id, :animal_type)
+    params.require(:animal).permit(:id, :external_id, :description, :name, :age, :gender, :shelter_id, :profile_photo_id, :animal_type, :canvas_photo_id)
   end 
 end

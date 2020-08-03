@@ -6,9 +6,10 @@ class CreateAnimals < ActiveRecord::Migration[6.0]
       t.integer :external_id
       t.text :description
       t.string :age
-      t.string :photo_status
       t.string :gender
       t.integer :shelter_id
+      t.integer :canvas_photo_id
+      t.integer :profile_photo_id
       t.timestamps
     end
   end

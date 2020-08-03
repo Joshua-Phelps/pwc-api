@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.integer "external_id"
     t.text "description"
     t.string "age"
-    t.string "photo_status"
     t.string "gender"
     t.integer "shelter_id"
+    t.integer "canvas_photo_id"
+    t.integer "profile_photo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,7 +66,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.string "url"
     t.string "size"
     t.string "google_drive_path"
-    t.boolean "profile"
     t.boolean "bkgd_removed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
