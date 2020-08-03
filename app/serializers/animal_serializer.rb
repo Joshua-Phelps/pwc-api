@@ -6,13 +6,7 @@ class AnimalSerializer < ActiveModel::Serializer
   end 
 
   def photo_url
-    if object.photos[2]
-      object.photos[2].url
-    elsif object.photos[0]
-      object.photos[0].url
-    else 
-      ''
-    end 
+    object.photos.find_by(profile: true)
   end 
 
   def total_paintings

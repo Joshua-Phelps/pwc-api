@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.string "age"
     t.string "photo_status"
     t.string "gender"
-    t.string "photo_local_path"
     t.integer "shelter_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,7 +64,9 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.integer "animal_id"
     t.string "url"
     t.string "size"
-    t.boolean "complete", default: false
+    t.string "google_drive_path"
+    t.boolean "profile"
+    t.boolean "bkgd_removed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

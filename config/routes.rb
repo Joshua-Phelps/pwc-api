@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # resources :password_resets
+  get '/photos/full_background', to: 'photos#full_background' 
+  get '/photos/print_ready', to: 'photos#print_ready' 
   resources :photos
   resources :galleries
   resources :paint_locations

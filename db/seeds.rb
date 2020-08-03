@@ -18,6 +18,8 @@ Photo.destroy_all
 PaintLocation.destroy_all 
 User.destroy_all
 
+User.create(username: "Admin", email: 'joshua.phelps89@gmail.com', permission_level: 3, password: 'admin')
+
 shelters = [{external_id:"WA52", name: "Adams County Pet Rescue", phone_number: '555-555-5555', email: 'placerEmail@gmail.com', address: {street_address: 'street address', city: 'City', state: 'WA', zip: 'zip code'}},
             {external_id: "WA07", name: "Benton Franklin Animal Services", phone_number: '555-555-5555', email: 'placerEmail@gmail.com', address: {street_address: 'street address', city: 'City', state: 'WA', zip: 'zip code'}},
             {external_id: "WA669", name: "Binky Bunny Tales", phone_number: '555-555-5555', email: 'placerEmail@gmail.com', address: {street_address: 'street address', city: 'City', state: 'WA', zip: 'zip code'}},
@@ -117,31 +119,43 @@ animal_data.each do |data|
   if @animal 
     animal_count += 1
 
-    if data["Photos"][0]
-      if data["Photos"][0]["LocalPath"]
-        @animal.photo_local_path = data["Photos"][0]["LocalPath"]
-        @animal.save
-      end 
+    if data["Photos"]
 
-      if data["Photos"][0]["Small"]
-        Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Small"], size: "small")
-        photo_count += 1
-      end 
+      data["Photos"].each_with_index do |ph, idx|
+        if ph['Full'] && ph["LocalPath"] 
+          if idx === 0 
+            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full', profile: true)
+            photo_count += 1 
+          else 
+            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full', profile: false)
+            photo_count += 1 
+          end 
+        end 
+      end  
+      # if data["Photos"][0]["LocalPath"]
+      #   @animal.photo_local_path = data["Photos"][0]["LocalPath"]
+      #   @animal.save
+      # end 
 
-      if data["Photos"][0]["Medium"]
-        Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Medium"], size: "medium")
-        photo_count += 1
-      end 
+      # if data["Photos"][0]["Small"]
+      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Small"], size: "small")
+      #   photo_count += 1
+      # end 
 
-      if data["Photos"][0]["Large"]
-        Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Large"], size: "large")
-        photo_count += 1
-      end 
+      # if data["Photos"][0]["Medium"]
+      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Medium"], size: "medium")
+      #   photo_count += 1
+      # end 
 
-      if data["Photos"][0]["Full"]
-        Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Full"], size: "Full")
-        photo_count += 1
-      end 
+      # if data["Photos"][0]["Large"]
+      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Large"], size: "large")
+      #   photo_count += 1
+      # end 
+
+      # if data["Photos"][0]["Full"]
+      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Full"], size: "Full")
+      #   photo_count += 1
+      # end 
     end 
   end 
 end 
