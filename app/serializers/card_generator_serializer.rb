@@ -3,7 +3,7 @@ class CardGeneratorSerializer < ActiveModel::Serializer
 
   def photos
     object.photos.map do |photo|
-      photo.url
+      photo.original_url
     end 
   end 
 

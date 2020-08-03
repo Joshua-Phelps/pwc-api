@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
 
   create_table "photos", force: :cascade do |t|
     t.integer "animal_id"
-    t.string "url"
+    t.string "original_url"
     t.string "size"
-    t.string "google_drive_path"
+    t.string "file_path"
+    t.string "google_drive_url"
     t.boolean "bkgd_removed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

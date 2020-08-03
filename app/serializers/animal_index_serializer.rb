@@ -8,7 +8,7 @@ class AnimalIndexSerializer < ActiveModel::Serializer
 
   def photo_url
     if object.photos[2]
-      object.photos[2].url
+      object.photos[2].original_url
     else 
       object.photos
     end 

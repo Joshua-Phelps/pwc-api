@@ -123,42 +123,18 @@ animal_data.each do |data|
       data["Photos"].each_with_index do |ph, idx|
         if ph['Full'] && ph["LocalPath"] 
           if idx === 0 
-            created_photo = Photo.new(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full')
+            created_photo = Photo.new(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
             if created_photo.save 
               @animal.profile_photo_id = created_photo.id
               @animal.save
             end 
             photo_count += 1 
           else 
-            Photo.create(animal_id: @animal.id, url: ph["Full"], google_drive_path: ph["LocalPath"], size: 'Full')
+            Photo.create(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
             photo_count += 1 
           end 
         end 
       end  
-      # if data["Photos"][0]["LocalPath"]
-      #   @animal.photo_local_path = data["Photos"][0]["LocalPath"]
-      #   @animal.save
-      # end 
-
-      # if data["Photos"][0]["Small"]
-      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Small"], size: "small")
-      #   photo_count += 1
-      # end 
-
-      # if data["Photos"][0]["Medium"]
-      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Medium"], size: "medium")
-      #   photo_count += 1
-      # end 
-
-      # if data["Photos"][0]["Large"]
-      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Large"], size: "large")
-      #   photo_count += 1
-      # end 
-
-      # if data["Photos"][0]["Full"]
-      #   Photo.create(animal_id: @animal.id, url: data["Photos"][0]["Full"], size: "Full")
-      #   photo_count += 1
-      # end 
     end 
   end 
 end 
