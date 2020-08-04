@@ -1,22 +1,22 @@
 class SheltersController < ApplicationController
   def index
-    @shelters = Shelter.all
-    render :json => @shelters
+    shelters = Shelter.all
+    render :json => shelters
   end
 
   def create
-    @shelter = Shelter.new(shelter_params)
-    if @shelter.save
-      render :json => @shelter
+    shelter = Shelter.new(shelter_params)
+    if shelter.save
+      render :json => shelter
     else 
       error_message
     end 
   end
 
   def show
-    @shelter = Shelter.find(params[:id])
-    if @shelter
-      render :json => @shelter
+    shelter = Shelter.find(params[:id])
+    if shelter
+      render :json => shelter
     else 
       error_message
     end 

@@ -1,22 +1,4 @@
-class PhotosController < ApplicationController
-
-  def create
-    photo = Photo.new(photo_params)
-    if photo.save
-      render :json => photo
-    else 
-      error_message
-    end 
-  end
-
-  def update
-    photo = Photo.find(params[:id])
-    if photo
-      render :json => photo
-    else 
-      error_message
-    end 
-  end
+class AnimalPhotosController < ApplicationController
 
   def create_canvas_photo
     animal = Animal.find(params[:animal_id])
@@ -44,6 +26,21 @@ class PhotosController < ApplicationController
         error_message
       end 
     else
+      error_message
+    end 
+  end 
+
+  def update_profile_photo
+    # animal = Animal.find(params[:id])
+    photo = Photo.find(params[:profile_photo_id])
+    if photo
+      animal = photo.animal.profile_photo_id = photo.id
+      if animal.save
+        render :json => animal, serializer: AnimalFullSerializer
+      else
+        error_message
+      end 
+    else 
       error_message
     end 
   end 

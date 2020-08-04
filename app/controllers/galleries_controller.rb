@@ -1,22 +1,22 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = Gallery.all
-    render :json => @galleries
+    galleries = Gallery.all
+    render :json => galleries
   end
 
   def show
-    @gallery = Gallery.find(params[:id])
-    if @gallery
-      render :json => @gallery
+    gallery = Gallery.find(params[:id])
+    if gallery
+      render :json => gallery
     else 
       error_message
     end 
   end 
 
   def create
-    @gallery = Gallery.new(gallery_params)
-    if @gallery.save
-      render :json => @gallery
+    gallery = Gallery.new(gallery_params)
+    if gallery.save
+      render :json => gallery
     else 
       error_message
     end 

@@ -1,9 +1,9 @@
 class PermissionsController < ApplicationController
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(permissions_params)
-      render :json => @user
+    user = User.find(params[:id])
+    if user.update(permissions_params)
+      render :json => user
     else 
       error_message
     end 
