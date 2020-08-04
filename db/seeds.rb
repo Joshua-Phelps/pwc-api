@@ -110,11 +110,12 @@ animal_data.each do |data|
     name: data["Name"], 
     external_id: data["ID"], 
     animal_type: data["Type"], 
-    age: data["age"],
+    age: data["Age"],
     gender: data["Gender"],
     description: data["Description"],
     shelter_id: @shelter.id,
   )
+
   if @animal 
     animal_count += 1
 

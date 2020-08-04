@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/animal_photos/create_canvas_photo/:animal_id', to: 'animal_photos#create_canvas_photo' 
   patch '/animal_photos/update_canvas_photo/:photo_id', to: 'animal_photos#update_canvas_photo' 
   get '/animals/name/:name', to: 'animals#get_by_name'
+  resources :uploads, :only => [:create]
   resources :photos
   resources :galleries
   resources :paint_locations

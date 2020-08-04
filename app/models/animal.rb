@@ -39,5 +39,64 @@ class Animal < ApplicationRecord
     new_photos
   end 
 
+  def self.add_to_db(file)
+    require "json"
+    animal_data_1 = File.read file
+
+    animal_data = JSON.parse(animal_data_1)
+  
+
+    animal_count = 0
+    photo_count = 0
+
+    animal_data.each do |data| 
+
+      shelter = Shelter.find_or_create_by(external_id: data["Organization_ID"])
+
+      animal = Animal.find_by(external_id: data["ID"])
+    
+
+      if !animal 
+        animal = Animal.create(
+        name: data["Name"], 
+        external_id: data["ID"], 
+        animal_type: data["Type"], 
+        age: data["Age"],
+        gender: data["Gender"],
+        description: data["Description"],
+        # description: JSON(data["Description"]),
+        shelter_id: shelter.id,
+        )
+      end 
+
+      if animal
+        animal_count += 1
+        if data["Photos"]
+          data["Photos"].each_with_index do |ph, idx|
+            if ph['Full'] && ph["LocalPath"] 
+              if idx === 0 
+                  created_photo = Photo.new(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+                  if created_photo.save 
+                    animal.profile_photo_id = created_photo.id
+                    if animal.save
+                      photo_count += 1 
+                    end 
+                  end 
+
+              else 
+                  new_photo = Photo.create(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+                  if new_photo
+                    photo_count += 1 
+                  end 
+              end  
+            end  
+          end 
+        end 
+      end
+    end  
+    puts animal_count.to_s + ' Animals and ' + photo_count.to_s + ' Photos created'
+    animal_count
+  end 
+
  
 end
