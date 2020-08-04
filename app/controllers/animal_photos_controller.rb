@@ -3,7 +3,7 @@ class AnimalPhotosController < ApplicationController
   def create_canvas_photo
     animal = Animal.find(params[:animal_id])
     if animal
-      photo = Photo.new(photo_params)
+      photo = Photo.new(animal_photo_params)
       if photo.save
         animal.canvas_photo_id = photo.id 
         animal.save 
@@ -17,11 +17,10 @@ class AnimalPhotosController < ApplicationController
   end 
 
   def update_canvas_photo
-    animal = Animal.find(params[:animal_id])
-    photo = animal.canvas_photo
+    photo = Photo.find(params[:id])
     if photo
-      if photo.update(photo_params)
-        render :json => animal, serializer: AnimalFullSerializer
+      if photo.update(animal_photo_params)
+        render :json => photo.animal, serializer: AnimalFullSerializer
       else 
         error_message
       end 
@@ -31,11 +30,10 @@ class AnimalPhotosController < ApplicationController
   end 
 
   def update_profile_photo
-    # animal = Animal.find(params[:id])
-    photo = Photo.find(params[:profile_photo_id])
+    photo = Photo.find(params[:photo_id])
     if photo
-      animal = photo.animal.profile_photo_id = photo.id
-      if animal.save
+      animal = photo.animal
+      if animal.update(animal_photo_params)
         render :json => animal, serializer: AnimalFullSerializer
       else
         error_message
@@ -57,7 +55,8 @@ class AnimalPhotosController < ApplicationController
   
   private 
 
-  def photo_params
-    params.require(:photo).permit(:id, :animal_id, :original_url, :size, :bkgd_removed, :google_drive_url)
+  def animal_photo_params
+    params.require(:animal_photo).permit(:id, :profile_photo_id, :animal_id, :original_url, :size, :bkgd_removed, :google_drive_url)
   end 
+
 end
