@@ -1,8 +1,4 @@
 class AnimalsController < ApplicationController
-  # def index
-  #   animals = Animal.all
-  #   render :json => animals, each_serializer: AnimalIndexSerializer
-  # end
 
   def create
     animal = Animal.new(animal_params)

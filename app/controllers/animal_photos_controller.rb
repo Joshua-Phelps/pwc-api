@@ -56,7 +56,7 @@ class AnimalPhotosController < ApplicationController
   private 
 
   def animal_photo_params
-    params.require(:animal_photo).permit(:id, :profile_photo_id, :animal_id, :original_url, :size, :bkgd_removed, :google_drive_url)
+    params.require(:animal_photo).permit(:id, :profile_photo_id, :animal_id, :original_url, :size, :google_drive_url)
   end 
 
 end

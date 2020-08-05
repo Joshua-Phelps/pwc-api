@@ -8,17 +8,4 @@ class Photo < ApplicationRecord
     new_url = google_url_start + url_end 
   end 
 
-
-  # def self.full_background
-  #   photos = Photo.where(bkgd_removed: false)
-  #   animals = {}
-  #   photos.map do |photo|
-  #     if animal
-  #     if !animals[photo.animal_id] 
-  #     animals[photo.animal_id] = photo.animal.photos
-  #     end 
-  #   end 
-  #   animals
-  # end 
-
 end
