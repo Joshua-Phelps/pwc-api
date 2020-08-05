@@ -109,9 +109,6 @@ animal_data.each do |data|
   @animal = Animal.create(
     name: data["Name"], 
     external_id: data["ID"], 
-    animal_type: data["Type"], 
-    age: data["Age"],
-    gender: data["Gender"],
     description: data["Description"],
     shelter_id: @shelter.id,
   )

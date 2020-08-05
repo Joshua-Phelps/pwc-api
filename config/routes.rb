@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # resources :password_resets
-  get '/photos/full_background', to: 'photos#full_background' 
-  get '/photos/print_ready', to: 'photos#print_ready' 
-  post '/animal_photos/update_profile_photo/:photo_id', to: 'animal_photos#update_profile_photo' 
-  post '/animal_photos/create_canvas_photo/:animal_id', to: 'animal_photos#create_canvas_photo' 
-  patch '/animal_photos/update_canvas_photo/:photo_id', to: 'animal_photos#update_canvas_photo' 
+  get '/animals/no_canvas_photo', to: 'animals#no_canvas_photos' 
+  get '/animals/print_ready', to: 'animals#print_ready_photos' 
+  post '/animals/profile_photo/:photo_id', to: 'animals#update_profile_photo' 
+  post '/animals/canvas_photo/:id', to: 'animals#create_canvas_photo' 
+  # patch '/animals/canvas_photo/:photo_id', to: 'animals#update_canvas_photo' 
   get '/animals/name/:name', to: 'animals#get_by_name'
   resources :uploads, :only => [:create]
   resources :photos
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users
   get '/google_drive', to: 'google_drive#index'
   post '/google_drive', to: 'google_drive#create'
-  get '/card_generator/:id', to: 'card_generator#show'
+  get 'animals/card_generator/:id', to: 'animals#card_'
   # Routes for Google authentication
   get 'auth/:provider/callback', to: 'sessions#googleAuth'
   get 'auth/failure', to: redirect('/')

@@ -5,19 +5,7 @@ class Animal < ApplicationRecord
   belongs_to :profile_photo, :class_name => 'Photo', :foreign_key => 'profile_photo_id', required: false
   belongs_to :shelter
   has_many :galleries, through: :paintings
-
-  # def self.full_background
-  #   Animal.where()
-  #   photos = Photo.where(bkgd_removed: false)
-  #   animals = {}
-  #   photos.map do |photo|
-  #     if animal
-  #     if !animals[photo.animal_id] 
-  #     animals[photo.animal_id] = photo.animal.photos
-  #     end 
-  #   end 
-  #   animals
-  # end 
+  accepts_nested_attributes_for :photos
 
   def min_info_photos
     new_photos = self.photos.map do |ph|
@@ -60,11 +48,7 @@ class Animal < ApplicationRecord
         animal = Animal.create(
         name: data["Name"], 
         external_id: data["ID"], 
-        animal_type: data["Type"], 
-        age: data["Age"],
-        gender: data["Gender"],
         description: data["Description"],
-        # description: JSON(data["Description"]),
         shelter_id: shelter.id,
         )
       end 

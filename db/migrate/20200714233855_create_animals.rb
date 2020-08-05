@@ -5,8 +5,6 @@ class CreateAnimals < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :external_id
       t.text :description, :limit => 2000
-      t.string :age
-      t.string :gender
       t.integer :shelter_id
       t.integer :canvas_photo_id
       t.integer :profile_photo_id

@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.string "name"
     t.integer "external_id"
     t.text "description"
-    t.string "age"
-    t.string "gender"
     t.integer "shelter_id"
     t.integer "canvas_photo_id"
     t.integer "profile_photo_id"
@@ -68,7 +66,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
     t.string "size"
     t.string "file_path"
     t.string "google_drive_url"
-    t.boolean "bkgd_removed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

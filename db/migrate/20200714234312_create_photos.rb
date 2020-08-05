@@ -6,7 +6,6 @@ class CreatePhotos < ActiveRecord::Migration[6.0]
       t.string :size
       t.string :file_path
       t.string :google_drive_url
-      t.boolean :bkgd_removed, :default => false
       t.timestamps
     end
   end
