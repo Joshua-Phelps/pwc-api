@@ -1,7 +1,6 @@
 class CreateAnimals < ActiveRecord::Migration[6.0]
   def change
     create_table :animals do |t|
-      t.string :animal_type
       t.string :name
       t.integer :external_id
       t.text :description, :limit => 2000

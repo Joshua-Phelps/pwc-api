@@ -99,42 +99,42 @@ paint_locations.each do |pl|
 end 
 
 
-animal_count = 0
-photo_count = 0
+# animal_count = 0
+# photo_count = 0
 
-animal_data.each do |data| 
+# animal_data.each do |data| 
 
-  @shelter = Shelter.find_or_create_by(external_id: data["Organization_ID"])
+#   @shelter = Shelter.find_or_create_by(external_id: data["Organization_ID"])
 
-  @animal = Animal.create(
-    name: data["Name"], 
-    external_id: data["ID"], 
-    description: data["Description"],
-    shelter_id: @shelter.id,
-  )
+#   @animal = Animal.create(
+#     name: data["Name"], 
+#     external_id: data["ID"], 
+#     description: data["Description"],
+#     shelter_id: @shelter.id,
+#   )
 
-  if @animal 
-    animal_count += 1
+#   if @animal 
+#     animal_count += 1
 
-    if data["Photos"]
+#     if data["Photos"]
 
-      data["Photos"].each_with_index do |ph, idx|
-        if ph['Full'] && ph["LocalPath"] 
-          if idx === 0 
-            created_photo = Photo.new(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
-            if created_photo.save 
-              @animal.profile_photo_id = created_photo.id
-              @animal.save
-            end 
-            photo_count += 1 
-          else 
-            Photo.create(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
-            photo_count += 1 
-          end 
-        end 
-      end  
-    end 
-  end 
-end 
+#       data["Photos"].each_with_index do |ph, idx|
+#         if ph['Full'] && ph["LocalPath"] 
+#           if idx === 0 
+#             created_photo = Photo.new(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+#             if created_photo.save 
+#               @animal.profile_photo_id = created_photo.id
+#               @animal.save
+#             end 
+#             photo_count += 1 
+#           else 
+#             Photo.create(animal_id: @animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+#             photo_count += 1 
+#           end 
+#         end 
+#       end  
+#     end 
+#   end 
+# end 
 
-puts animal_count.to_s + ' Animals and ' + photo_count.to_s + ' Photos created'
+# puts animal_count.to_s + ' Animals and ' + photo_count.to_s + ' Photos created'

@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_234312) do
   enable_extension "plpgsql"
 
   create_table "animals", force: :cascade do |t|
-    t.string "animal_type"
     t.string "name"
     t.integer "external_id"
     t.text "description"

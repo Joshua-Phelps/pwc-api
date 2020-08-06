@@ -33,15 +33,12 @@ class Animal < ApplicationRecord
 
     animal_data.each do |data|
       shelter = Shelter.find_or_create_by(external_id: data["Organization_ID"])
-
-      animal = Animal.find_by(external_id: data["ID"])
-    
-
       description_data =  Nokogiri::HTML.parse data["Description"]
-      # description_data = description_data.text.gsub(/\&\/;/\/#39/, "'")
-      description_data = description_data.text.gsub(/&#39/, "'")
-      description_data = description_data.gsub(";", "")
-  
+      description_data = description_data.text.gsub(/&#39;/, "'")
+      description_data = description_data.gsub(/&#34;/, '"')
+      # description_data = description_data.gsub(";", "")   
+      
+      animal = Animal.find_by(external_id: data["ID"])
       if !animal 
         animal = Animal.create(
         name: data["Name"], 
@@ -49,30 +46,28 @@ class Animal < ApplicationRecord
         description: description_data,
         shelter_id: shelter.id,
         )
+        animal && animal_count += 1
       end 
 
-      if animal
-        animal_count += 1
-        if data["Photos"]
+      if animal && data["Photos"]
           data["Photos"].each_with_index do |ph, idx|
-            if ph['Full'] && ph["LocalPath"] 
-              if idx === 0 
-                  created_photo = Photo.new(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
-                  if created_photo.save 
-                    animal.profile_photo_id = created_photo.id
-                    if animal.save
-                      photo_count += 1 
-                    end 
-                  end 
-
-              else 
-                  new_photo = Photo.create(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
-                  if new_photo
+          if ph['Full'] && ph["LocalPath"] 
+            if idx === 0 
+                created_photo = Photo.new(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+                if created_photo.save 
+                  animal.profile_photo_id = created_photo.id
+                  if animal.save
                     photo_count += 1 
                   end 
-              end  
+                end 
+
+            else 
+                new_photo = Photo.create(animal_id: animal.id, original_url: ph["Full"], file_path: ph["LocalPath"], size: 'Full')
+                if new_photo
+                  photo_count += 1 
+                end 
             end  
-          end 
+          end  
         end 
       end
     end  
