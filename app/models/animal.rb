@@ -23,6 +23,22 @@ class Animal < ApplicationRecord
     new_photos
   end 
 
+  def min_info_paintings
+    self.paintings.map do |paint| 
+      new_obj = {}
+      paint.attributes.each do |key| 
+        if key[0] === 'google_drive_url'
+          new_obj[:visible_url] = paint.get_visible_google_drive_url
+          new_obj[:google_drive_url] = paint.google_drive_url
+        else
+          new_obj[key[0]] = paint[key[0]]
+        end 
+      end 
+      new_obj
+    end 
+  end 
+
+
   def self.add_to_db(file)
     # require "json"
     animal_data = File.read file

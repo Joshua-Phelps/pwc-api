@@ -5,4 +5,8 @@ class AnimalFullSerializer < ActiveModel::Serializer
     object.min_info_photos
   end 
 
+  def paintings
+    object.min_info_paintings
+  end 
+
 end

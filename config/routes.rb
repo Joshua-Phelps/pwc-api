@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   # resources :password_resets
   get 'animals/no_canvas_photo', to: 'animals#no_canvas_photos' 
   get 'animals/print_ready', to: 'animals#print_ready_photos' 
-  post 'animals/profile_photo/:photo_id', to: 'animals#update_profile_photo' 
-  post 'animals/canvas_photo/:id', to: 'animals#create_canvas_photo' 
-  # patch '/animals/canvas_photo/:photo_id', to: 'animals#update_canvas_photo' 
   get 'animals/name/:name', to: 'animals#get_by_name'
   get 'animals/card_generator/:id', to: 'animals#card_generator'
+  post 'animals/profile_photo/:photo_id', to: 'animals#update_profile_photo' 
+  post 'animals/canvas_photo/:id', to: 'animals#create_canvas_photo' 
+  
   resources :uploads, :only => [:create]
   resources :photos
   resources :galleries
