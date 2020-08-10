@@ -23,11 +23,20 @@ class PaintLocationsController < ApplicationController
     end 
   end 
 
+  def update
+    paint_loc = PaintLocation.find(params[:id])
+    if paint_loc.update(paint_location_params)
+      render :json => paint_loc
+    else 
+      error_message
+    end 
+  end
+
 
   private 
 
   def paint_location_params
-    params.require(:paint_location).permit(:id, :name, :address => [:street_address, :city, :state, :zip])
+    params.require(:paint_location).permit(:id, :name, :address, :phone_number, :email => [:street_address, :city, :state, :zip])
   end 
 
 end

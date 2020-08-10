@@ -22,6 +22,15 @@ class SheltersController < ApplicationController
     end 
   end
 
+  def update
+    shelter = Shelter.find(params[:id])
+    if shelter.update(shelter_params)
+      render :json => shelter
+    else 
+      error_message
+    end 
+  end
+
   private
 
   def shelter_params

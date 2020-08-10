@@ -8,7 +8,8 @@ class Animal < ApplicationRecord
   accepts_nested_attributes_for :photos
 
   def min_info_photos
-    new_photos = self.photos.map do |ph|
+    new_photos = []
+    self.photos.each do |ph|
       new_obj = {}
       new_obj[:id] = ph[:id]
       new_obj[:file_path] = ph[:file_path]
@@ -18,7 +19,7 @@ class Animal < ApplicationRecord
         new_url = ph.original_url
       end
       new_obj[:url] = new_url 
-      new_obj
+      ph[:id] === self.profile_photo_id ? new_photos.unshift(new_obj) : new_photos.push(new_obj)
     end 
     new_photos
   end 

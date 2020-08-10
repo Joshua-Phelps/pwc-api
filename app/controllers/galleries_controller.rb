@@ -22,6 +22,15 @@ class GalleriesController < ApplicationController
     end 
   end
 
+  def update
+    gallery = Gallery.find(params[:id])
+    if gallery.update(gallery_params)
+      render :json => gallery
+    else 
+      error_message
+    end 
+  end
+
   private
 
   def gallery_params
